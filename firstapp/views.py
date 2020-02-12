@@ -16,11 +16,18 @@ from django.shortcuts import render
 # def details(request):
 #     return HttpResponsePermanentRedirect("/")
 
-def index(request):
-    header = "Personal Data"  # обычная переменная
-    langs = ["English", "German", "Spanish"]  # массив
-    user = {"name": "Tom", "age": 23}  # словарь
-    addr = ("Абрикосовая", 23, 45)  # кортеж
+from django.shortcuts import render
+from django.http import HttpResponse
+from .forms import UserForm
 
-    data = {"header": header, "langs": langs, "user": user, "address": addr}
-    return render(request, "firstapp/index.html", context=data)
+
+def index(request):
+    if request.method == "POST":
+        name = request.POST.get("name")
+        age = request.POST.get("age")     # получение значения поля age
+        comment = request.POST.get("comment")
+        email = request.POST.get("email")
+        return HttpResponse("<h2>Hello, {0}! age: {1}, email: {2}, comment: {3}</h2>".format(name,age,email,comment))
+    else:
+        userform = UserForm()
+        return render(request, "index.html", {"form": userform})
