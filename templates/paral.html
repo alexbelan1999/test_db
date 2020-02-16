@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Параллелепипед</title>
+</head>
+<body>
+<p>Вычисление объема и общей площади поверхности параллелепипеда</p>
+<form method="POST">
+    {% csrf_token %}
+    <table>
+        {{ form }}
+    </table>
+    <input type="submit" value="Вычисление">
+</form>
+<table>
+    <tr>
+        <td>Объем: {{ volume }}</td>
+    </tr>
+    <tr>
+        <td>Общая площадь поверхности: {{ square }}</td>
+    </tr>
+</table>
+
+</body>
+</html>
